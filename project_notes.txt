@@ -1,0 +1,44 @@
+    opspilot/
+    │
+    ├── app/
+    │   ├── __init__.py
+    │   ├── main.py
+    │   │
+    │   ├── api/
+    │   │   ├── __init__.py
+    │   │   └── incidents.py
+    │   │
+    │   ├── core/
+    │   │   ├── __init__.py
+    │   │   └── config.py
+    │   │
+    │   ├── services/
+    │   │   ├── __init__.py
+    │   │   ├── llm.py
+    │   │   ├── rag.py
+    │   │   └── incident.py
+    │   │
+    │   ├── tools/
+    │   │   └── __init__.py
+    │   │
+    │   └── schemas/
+    │       ├── __init__.py
+    │       └── incident.py
+    │
+    ├── knowledge_base/
+    │
+    ├── tests/
+    │   └── __init__.py
+    │
+    ├── .env
+    ├── .gitignore
+    ├── requirements.txt
+    └── README.md
+
+
+Progress note:
+1. project structure setup has been done.
+2. created the llm.py service in the services dir
+3. create the /incidents/ endpoint the report the incident by the user or another application to the opspilot.
+4. currently we can report the incident through the api and llm and classify the incident and provide the category, severity, summary and possible_impact.
+5. we need to move ahead from this point.
