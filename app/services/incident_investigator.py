@@ -56,7 +56,7 @@ Remember this distinction:
     - Agent loop = connects decisions, actions and observations.
     - Agent = the system combining these capabilities to achieve a goal.
 """
-def investigate_with_tools(incident_question: str) -> str:
+def manual_investigator_agent(incident_question: str) -> str:
     """Investigate an incident using available tools."""
 
     llm_with_tools = ollama_llm.bind_tools(AVAILABLE_TOOLS)

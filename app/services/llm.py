@@ -13,4 +13,5 @@ genai_llm = ChatGoogleGenerativeAI(
 ollama_llm = ChatOllama(
     model="qwen3:1.7b",
     temperature=0,
+    reasoning=False,
 )

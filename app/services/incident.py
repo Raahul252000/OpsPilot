@@ -1,7 +1,8 @@
 import time
 from app.schemas.incidents import Incidents
 from app.services.incident_classifier import classifier_chain
-from app.services.incident_investigator import investigate_with_tools, build_retrieval_query
+from app.services.incident_investigator import manual_investigator_agent, build_retrieval_query
+from app.services.agent.incident_investigator_agent import investigate_with_real_agent
 
 
 async def create_new_incident(incident: Incidents):
@@ -27,9 +28,14 @@ async def create_new_incident(incident: Incidents):
                           classification=classification_data)
 
     print("[B] Starting tool-based investigation")
-    investigation_result = investigate_with_tools(
-        incident_question=retrieval_query
-    )
+
+    # # Calling our manually created agent
+    # investigation_result = manual_investigator_agent(
+    #     incident_question=retrieval_query
+    # )
+
+    # Calling agent created with langchain
+    investigation_result = investigate_with_real_agent(incident_question=retrieval_query)
     print("[B] Tool-based investigation completed")
     print(f"Investigation result: {investigation_result}")
     return {

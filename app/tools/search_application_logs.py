@@ -262,8 +262,18 @@ def search_application_logs(
     keywords: list[str],
 ) -> list[dict]:
     """
-    Search application logs for a service using multiple
-    keywords. Returns logs matching any of the keywords.
+    Search application logs for a specific service.
+
+    Required arguments:
+    - service: The exact application service name.
+      Example: user-api
+
+    - keywords: A list of search terms.
+      Example: ["connection timeout", "pool exhausted"]
+
+    Both service and keywords MUST be provided.
+    Do not include the service name inside keywords
+    as a replacement for the service argument.
     """
 
     matching_logs = []
