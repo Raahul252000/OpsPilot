@@ -1,5 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
-from app.services.llm import genai_llm
+from app.services.llm import genai_llm, ollama_llm
 from app.schemas.classification import IncidentClassification
 
 """
@@ -37,6 +37,14 @@ prompt = ChatPromptTemplate.from_messages([
 ])
 
 # setting the llm to return the structured output as per the pydantic model
-structured_llm = genai_llm.with_structured_output(IncidentClassification)
+
+## cloud gemini model
+# structured_llm = genai_llm.with_structured_output(IncidentClassification)
+
+# local qwen model
+structured_llm = ollama_llm.with_structured_output(
+    IncidentClassification,
+    method="json_schema",
+)
 
 classifier_chain = prompt | structured_llm

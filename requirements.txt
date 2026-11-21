@@ -1,0 +1,19 @@
+
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+
+# LangChain core
+langchain
+langchain-core
+langchain-community
+langchain-text-splitters
+
+# Gemini integration
+langchain-google-genai
+google-generativeai
+
+# RAG and vector database
+langchain-chroma
+chromadb

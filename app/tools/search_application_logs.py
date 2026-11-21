@@ -254,24 +254,37 @@ APPLICATION_LOGS = [
 
 
 from langchain.tools import tool
+from app.services.rag.chain import ask_question
 
 @tool
 def search_application_logs(
     service: str,
-    keyword: str,
+    keywords: list[str],
 ) -> list[dict]:
     """
-    Search application logs by service and keyword.
+    Search application logs for a service using multiple
+    keywords. Returns logs matching any of the keywords.
     """
 
     matching_logs = []
+
+    normalized_keywords = [
+        keyword.lower().strip()
+        for keyword in keywords
+        if keyword.strip()
+    ]
 
     for log in APPLICATION_LOGS:
 
         if log["service"] != service:
             continue
 
-        if keyword.lower() in log["message"].lower():
+        message = log["message"].lower()
+
+        if any(
+            keyword in message
+            for keyword in normalized_keywords
+        ):
             matching_logs.append(log)
 
     return matching_logs

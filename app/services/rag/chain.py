@@ -1,6 +1,6 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.documents import Document
-from app.services.llm import genai_llm
+from app.services.llm import genai_llm, ollama_llm
 from app.services.rag.retriever import get_documents
 from langchain_core.output_parsers import StrOutputParser
 
@@ -45,7 +45,8 @@ rag_chain = (
         "question": lambda inputs: inputs["question"],
     }
     | rag_prompt
-    | genai_llm
+    # | genai_llm    # commenting out for now, using local qwen model
+    | ollama_llm
     | StrOutputParser()
 )
 
